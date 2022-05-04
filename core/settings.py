@@ -33,7 +33,7 @@ SECRET_KEY = env.str('QDD_SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+# DEBUG = True
 DEBUG = env.str('QDD_DEBUG', default = False)
 
 ALLOWED_HOSTS = ['cryptic-tor-77631.herokuapp.com', 'localhost', '127.0.0.1']

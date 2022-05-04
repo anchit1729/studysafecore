@@ -1,7 +1,7 @@
 #Define venue, hku_member, visit_record relationship
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -13,7 +13,7 @@ Currently, it doesn't extend anything beyond the default available
 from Django, but it is always useful to include a custom model 
 for future use.
 """
-class CustomUser(User):
+class CustomUser(AbstractUser):
     pass
 
     def __str__(self):
