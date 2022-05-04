@@ -7,69 +7,73 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
-"""
-Author: Anchit Mishra
+# """
+# Author: Anchit Mishra
 
-This class acts as a user manager for the custom users we define below.
-"""
-class CustomUserManager(BaseUserManager):
-    """
-    Custom user model manager where email is the unique identifiers
-    for authentication instead of usernames.
-    """
-    def create_user(self, email, password, **extra_fields):
-        """
-        Create and save a User with the given email and password.
-        """
-        if not email:
-            raise ValueError(_('The Email must be set'))
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
-        user.set_password(password)
-        user.save()
-        return user
+# This class acts as a user manager for the custom users we define below.
+# """
+# class CustomUserManager(BaseUserManager):
+#     """
+#     Custom user model manager.
+#     """
+#     def create_user(self, username, password, email='', first_name='', last_name='', **extra_fields):
+#         """
+#         Create and save a User.
+#         """
+#         if not username:
+#             raise ValueError(_('The Username must be set'))
+#         if is_human:
+#             email = self.normalize_email(email)
+#             user = self.model(username=username, email=email, first_name=first_name, last_name=last_name, is_human=is_human, **extra_fields)
+#             user.set_password(password)
+#             user.save()
+#         else:
+#             user = self.model(username=username, is_human=is_human, **extra_fields)
+#             user.set_password(password)
+#             user.save()
+#         return user
 
-    def create_superuser(self, email, password, **extra_fields):
-        """
-        Create and save a SuperUser with the given email and password.
-        """
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_active', True)
+#     def create_superuser(self, email, password, **extra_fields):
+#         """
+#         Create and save a SuperUser with the given email and password.
+#         """
+#         extra_fields.setdefault('is_staff', True)
+#         extra_fields.setdefault('is_superuser', True)
+#         extra_fields.setdefault('is_active', True)
 
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError(_('Superuser must have is_staff=True.'))
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError(_('Superuser must have is_superuser=True.'))
-        return self.create_user(email, password, **extra_fields)
+#         if extra_fields.get('is_staff') is not True:
+#             raise ValueError(_('Superuser must have is_staff=True.'))
+#         if extra_fields.get('is_superuser') is not True:
+#             raise ValueError(_('Superuser must have is_superuser=True.'))
+#         return self.create_user(email, password, **extra_fields)
 
 
 
-"""
-Author: Anchit Mishra
+# """
+# Author: Anchit Mishra
 
-This class provides a baseline template for user authentication.
-Currently, it doesn't extend anything beyond the default available
-from Django, but it is always useful to include a custom model 
-for future use.
-"""
-class CustomUser(AbstractBaseUser, PermissionsMixin):
-    username = None
-    first_name = None
-    last_name = None
-    email = models.EmailField(_('email address'), unique = True)
-    is_human = models.BooleanField(default=False)
+# This class provides a baseline template for user authentication.
+# Currently, it doesn't extend anything beyond the default available
+# from Django, but it is always useful to include a custom model 
+# for future use.
+# """
+# class CustomUser(AbstractBaseUser, PermissionsMixin):
+#     username = None
+#     first_name = None
+#     last_name = None
+#     email = models.EmailField(_('email address'), unique = True)
+#     is_human = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'username'
-    if is_human:
-        REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'email']
-    else:
-        REQUIRED_FIELDS = ['username'] 
+#     USERNAME_FIELD = 'username'
+#     if is_human:
+#         REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'email']
+#     else:
+#         REQUIRED_FIELDS = ['username'] 
 
-    objects = CustomUserManager()
+#     objects = CustomUserManager()
 
-    def __str__(self):
-        return self.username
+#     def __str__(self):
+#         return self.username
 
 """
 Author: Anchit Mishra
