@@ -10,6 +10,7 @@ tzdata = "*"
 whitenoise = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+environs = "*"
 
 [dev-packages]
 
