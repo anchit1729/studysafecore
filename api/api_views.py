@@ -86,7 +86,7 @@ class view_close_contacts(generics.ListAPIView):
                 #print(entry_exit_pair['time_in'],'\t',bad_time_to_be_here['time_out'])
                 if entry_exit_pair['time_in'] <= bad_time_to_be_here['time_out'] and entry_exit_pair['time_out'] >= bad_time_to_be_here['time_in']:
                     overlap = min( entry_exit_pair['time_out'] - bad_time_to_be_here['time_in'], bad_time_to_be_here['time_out'] - entry_exit_pair['time_in'])
-                    if overlap.minutes >= 30:
+                    if overlap.seconds > 1800:
                         close_contacts.append(entry_exit_pair['member_uid'])
 
 
