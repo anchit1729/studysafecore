@@ -30,7 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('QDD_SECRET_KEY')
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
+#DEBUG = True
 DEBUG = env.str('QDD_DEBUG', default = False)
 
 ALLOWED_HOSTS = ['cryptic-tor-77631.herokuapp.com', 'localhost', '127.0.0.1']
@@ -84,17 +86,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-           'default': {
-            'ENGINE': 'django.db.backends.postgresql', 
-            'NAME': 'studysafedb',
-            'USER': 'comp3297',
-            'PASSWORD': 'pwd-swe',
-            'HOST': 'localhost',
-            'PORT': '', 
-    }
-}
+# DATABASES = {
+#            'default': {
+#             'ENGINE': 'django.db.backends.postgresql', 
+#             'NAME': 'studysafedb',
+#             'USER': 'comp3297',
+#             'PASSWORD': 'pwd-swe',
+#             'HOST': 'localhost',
+#             'PORT': '', 
+#     }
+# }
 
+DATABASES = {
+    'default': env.dj_db_url('DATABASE_URL') 
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
