@@ -9,6 +9,7 @@ djangorestframework = "*"
 tzdata = "*"
 whitenoise = "*"
 gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
