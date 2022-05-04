@@ -8,6 +8,7 @@ django = "~=4.0"
 djangorestframework = "*"
 tzdata = "*"
 whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 
