@@ -84,9 +84,9 @@ class view_close_contacts(generics.ListAPIView):
         for entry_exit_pair in entry_exit_pairs:
             for bad_time_to_be_here in entry_exit_pairs_of_infected:
                 #print(entry_exit_pair['time_in'],'\t',bad_time_to_be_here['time_out'])
-                if entry_exit_pair['time_in'] < bad_time_to_be_here['time_out'] and entry_exit_pair['time_out'] > bad_time_to_be_here['time_in']:
+                if entry_exit_pair['time_in'] <= bad_time_to_be_here['time_out'] and entry_exit_pair['time_out'] >= bad_time_to_be_here['time_in']:
                     overlap = min( entry_exit_pair['time_out'] - bad_time_to_be_here['time_in'], bad_time_to_be_here['time_out'] - entry_exit_pair['time_in'])
-                    if overlap.seconds / 3600 > 0.5:
+                    if overlap.minutes >= 30:
                         close_contacts.append(entry_exit_pair['member_uid'])
 
 
